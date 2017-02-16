@@ -47,12 +47,12 @@ class mipow:
   def off(self):
     self.power = False
     packet = bytearray([0x00, 0x00, 0x00, 0x00])
-    self.send_packet(37, packet)
+    self.send_packet(0x0023, packet)
 
   def on(self):
     self.power = True
     packet = bytearray([0xff, 0x00, 0x00, 0x00])
-    self.send_packet(37, packet)
+    self.send_packet(0x0023, packet)
 
   def set_rgb(self, red, green, blue):
     self.red = red

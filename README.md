@@ -1,9 +1,16 @@
 Python control for Mipow smart LED bulbs
 =========================================
 
-A simple python API for [Mipow Smart](http://www.mipow.de/smart-home/46/mipow-playbulb-smart) Bluetooth LE lightbulbs
-Based on the work by Matthew Garret on [python-zengge](https://github.com/mjg59/python-zengge) 
+This is a simple python API for Mipow COMET Bluetooth LE led stripes
+It is based on the work by amahlaka [https://github.com/amahlaka/python-mipow](https://github.com/amahlaka/python-mipow)
+His work is based on the work by Matthew Garret on [python-zengge](https://github.com/mjg59/python-zengge) 
 
+Requirements
+------------
+Install bluepy
+pip3 install bluepy
+pip install bluepy
+If you have problems with the bluepy-helper, take a look at this: [http://installfights.blogspot.ch/2016/10/how-to-control-magicblue-led-bulb-with.html](http://installfights.blogspot.ch/2016/10/how-to-control-magicblue-led-bulb-with.html)
 
 Example use
 -----------

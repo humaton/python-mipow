@@ -8,18 +8,18 @@ import warnings
 
 dynamic_requires = []
 
-version = 0.1
+version = 0.3
 
 setup(
-    name='mipow',
-    version=0.1,
-    author='Arttu Mahlakaarto',
-    author_email='Arttu.mahlakaarto@gmail.com',
-    url='http://github.com/amahlaka/python-mipow',
+    name='mipow-comet',
+    version=0.3,
+    author='Andreas Hohler',
+    author_email='east7074@gmail.com',
+    url='https://github.com/papagei9/python-mipow',
     packages=find_packages(),
-    download_url='https://github.com/amahlaka/python-mipow/tarball/0.1',
+    download_url='https://github.com/amahlaka/python-mipow/tarball/0.3',
     scripts=[],
-    description='Python API for controlling Mipow Smart LED bulbs',
+    description='Python API for controlling Mipow COMET LED stripes',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',

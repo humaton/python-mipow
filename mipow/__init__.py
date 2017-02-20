@@ -1,7 +1,7 @@
-# Python module for control of Mipow LED bulbs
+# Python module for control of Mipow COMET led stripe
 #
-# Copyright 2016 Arttu Mahlakaarto <Arttu.mahlakaarto@gmail.com>
-# Based on work by Matthew Garret
+# Copyright 2017 papagei9
+# Based on work by Arttu Mahlakaarto
 # This code is released under the terms of the MIT license. See the LICENSE
 # file for more details.
 
@@ -33,6 +33,9 @@ class mipow:
     self.device = btle.Peripheral(self.mac, addrType=btle.ADDR_TYPE_PUBLIC)
     self.device.setDelegate(Delegate(self))
     self.get_state()
+
+  def disconnect(self):
+    self.device.disconnect()
 
   def send_packet(self, handleId, data):
     initial = time.time()
@@ -69,6 +72,9 @@ class mipow:
     self.white = white
     packet = bytearray([white, 0x00, 0x00, 0x00])
     self.send_packet(0x0023, packet)
+
+  def set_wrgb(self, white, red, green, blue):
+    self.set_rgbw(red, green, blue, white)
 
   def set_rgbw(self, red, green, blue, white):
     self.red = red

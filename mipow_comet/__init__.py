@@ -19,7 +19,7 @@ class Delegate(btle.DefaultDelegate):
 
 
 
-class mipow:
+class mipow_comet:
   def __init__(self, mac):
     self.mac = mac
 

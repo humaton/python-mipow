@@ -60,7 +60,7 @@ class mipow:
     self.blue = blue
     self.white = 0
     packet = bytearray([0x00, red, green, blue])
-    self.send_packet(37, packet)
+    self.send_packet(0x0023, packet)
 
   def set_white(self, white):
     self.red = 0
@@ -68,7 +68,7 @@ class mipow:
     self.blue = 0
     self.white = white
     packet = bytearray([white, 0x00, 0x00, 0x00])
-    self.send_packet(37, packet)
+    self.send_packet(0x0023, packet)
 
   def set_rgbw(self, red, green, blue, white):
     self.red = red
@@ -76,7 +76,7 @@ class mipow:
     self.blue = blue
     self.white = white
     packet = bytearray([white, red, green, blue])
-    self.send_packet(37, packet)
+    self.send_packet(0x0023, packet)
 
   def set_effect(self, red, green, blue, white, mode, speed):
     self.red = red
@@ -85,11 +85,11 @@ class mipow:
     self.white = white
     self.mode = mode
     self.speed = speed
-    packet = bytearray([white, red, green, blue, mode, 0x00, 0x14, speed])
-    self.send_packet(35, packet)
+    packet = bytearray([white, red, green, blue, mode, 0x00, speed, 0x00])
+    self.send_packet(0x0021, packet)
 
   def get_state(self):
-    status = self.device.readCharacteristic(37)
+    status = self.device.readCharacteristic(0x0023)
     if bytearray(status) != bytearray([0, 0, 0, 0]):
         self.power = True
     else:

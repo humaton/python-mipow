@@ -66,6 +66,10 @@ class mipow_comet:
     self.green = green
     self.blue = blue
     self.white = 0
+
+    hsv = colorsys.rgb_to_hsv(self.red / 255, self.green / 255, self.blue / 255)
+    self.brightness = round(hsv[2] * 255)
+
     packet = bytearray([0x00, red, green, blue])
     self.send_packet(0x0023, packet)
 
@@ -92,7 +96,7 @@ class mipow_comet:
     self.red = red
     self.green = green
     self.blue = blue
-    self.white = white
+    # self.white = white
     self.mode = mode
     self.speed = speed
     packet = bytearray([0x00, red, green, blue, mode, 0x00, speed, 0x00])

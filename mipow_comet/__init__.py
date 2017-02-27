@@ -24,6 +24,8 @@ class mipow_comet:
     self.mac = mac
     self.white = 0xff
     self.brightness = 255
+    self.effect = 0xff
+    self.effect_speed = 0x14
 
   def set_state(self, white, red, green, blue):
     self.white = white
@@ -86,14 +88,14 @@ class mipow_comet:
     packet = bytearray([white, red, green, blue])
     self.send_packet(0x0023, packet)
 
-  def set_effect(self, red, green, blue, white, mode, speed):
+  def set_effect(self, red, green, blue, mode, speed):
     self.red = red
     self.green = green
     self.blue = blue
     self.white = white
     self.mode = mode
     self.speed = speed
-    packet = bytearray([white, red, green, blue, mode, 0x00, speed, 0x00])
+    packet = bytearray([0x00, red, green, blue, mode, 0x00, speed, 0x00])
     self.send_packet(0x0021, packet)
 
   def set_brightness(self, brightness):
@@ -114,10 +116,12 @@ class mipow_comet:
     self.green = status[2]
     self.blue = status[3]
 
+    effect = self.device.readCharacteristic(0x0021)
+    self.effect = effect[4]
+    self.effect_speed = effect[6]
+
     hsv = colorsys.rgb_to_hsv(self.red / 255, self.green / 255, self.blue / 255)
     self.brightness = round(hsv[2] * 255)
-    return status
-
 
 
   def get_on(self):
@@ -131,3 +135,9 @@ class mipow_comet:
 
   def get_brightness(self):
     return self.brightness
+
+  def get_effect(self):
+    return self.effect
+
+  def get_effect_speed(self):
+    return self.effect_speed

@@ -6,7 +6,7 @@
 # file for more details.
 
 import time
-
+import colorsys
 from bluepy import btle
 
 
@@ -23,6 +23,7 @@ class mipow_comet:
   def __init__(self, mac):
     self.mac = mac
     self.white = 0xff
+    self.brightness = 255
 
   def set_state(self, white, red, green, blue, power):
     self.white = white
@@ -95,6 +96,12 @@ class mipow_comet:
     packet = bytearray([white, red, green, blue, mode, 0x00, speed, 0x00])
     self.send_packet(0x0021, packet)
 
+  def set_brightness(self, brightness):
+    self.brightness = brightness
+    hsv = colorsys.rgb_to_hsv(self.red / 255, self.green / 255, self.blue / 255)
+    rgb = colorsys.hsv_to_rgb(hsv[0], hsv[1], brightness / 255)
+    return self.set_rgb(round(rgb[0] * 255), round(rgb[1] * 255), round(rgb[2] * 255))
+    
   def get_state(self):
     status = self.device.readCharacteristic(0x0023)
     if bytearray(status) != bytearray([0, 0, 0, 0]):

@@ -108,6 +108,7 @@ class mipow_comet:
         self.power = True
     else:
         self.power = False
+
     self.white = status[0]
     self.red = status[1]
     self.green = status[2]
@@ -124,3 +125,6 @@ class mipow_comet:
 
   def get_white(self):
     return self.white
+
+  def get_brightness(self):
+    return self.brightness

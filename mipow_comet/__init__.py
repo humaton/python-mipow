@@ -25,7 +25,7 @@ class mipow_comet:
     self.white = 0xff
     self.brightness = 255
 
-  def set_state(self, white, red, green, blue, power):
+  def set_state(self, white, red, green, blue):
     self.white = white
     self.red = red
     self.green = green
@@ -113,6 +113,9 @@ class mipow_comet:
     self.red = status[1]
     self.green = status[2]
     self.blue = status[3]
+
+    hsv = colorsys.rgb_to_hsv(self.red / 255, self.green / 255, self.blue / 255)
+    self.brightness = round(hsv[2] * 255)
     return status
 
 

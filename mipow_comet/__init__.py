@@ -128,7 +128,15 @@ class mipow_comet:
     self.brightness = round(hsv[2] * 255)
 
 
+  def update_power(self):
+    status = self.device.readCharacteristic(0x0023)
+    if bytearray(status) != bytearray([0, 0, 0, 0]):
+        self.power = True
+    else:
+        self.power = False
+
   def get_on(self):
+    self.update_power()
     return self.power
 
   def get_colour(self):
